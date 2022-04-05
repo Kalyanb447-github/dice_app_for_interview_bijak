@@ -20,7 +20,8 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(controller.allData.toString()),
+                // Text(controller.allData.toString()),
+                Text('Chance ${controller.currentChance.value + 1}'),
                 Row(
                   children: <Widget>[
                     Expanded(
