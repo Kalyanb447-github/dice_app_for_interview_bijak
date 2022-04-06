@@ -1,19 +1,35 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ShowValueController extends GetxController {
   static ShowValueController get to => Get.find();
-  RxList<dynamic> allData = List<dynamic>.filled(10, 0, growable: true).obs;
+  RxList<int> allData = List<int>.filled(10, 0, growable: true).obs;
 
   RxInt total = 0.obs;
 
   RxBool loading = false.obs;
 
-  int findTotal() {
+  findTotal() {
     total.value = 0;
     allData.forEach((element) {
-      total += int.tryParse(element) ?? 0;
+      total += element;
     });
+  }
 
-    return total.value;
+  final box = GetStorage();
+  // int get heightScoreStorage =>
+  RxInt heightScore = 0.obs;
+  void saveHeightScoreForFutureUse() {
+    if (total.value >= heightScore.value) {
+      heightScore.value = total.value;
+      box.write('height_score', total.value);
+      Future.delayed(Duration(seconds: 1), () {
+        Get.snackbar('Congratulaton', 'You have a new height score',
+            backgroundColor: Colors.green);
+      });
+    } else {
+      heightScore.value = box.read('height_score') ?? 0;
+    }
   }
 }

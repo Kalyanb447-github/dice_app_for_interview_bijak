@@ -18,38 +18,46 @@ class ShowValueView extends GetView<ShowValueController> {
       child: Scaffold(
         // backgroundColor: Colors.red,
         appBar: AppBar(
-          title: Text('Dicee'),
+          title: Text('Leaderboard'),
           // backgroundColor: Colors.red,
         ),
         body: GetX<ShowValueController>(
           init: ShowValueController(),
+          initState: (_) {
+            controller.findTotal();
+            controller.saveHeightScoreForFutureUse();
+          },
           builder: (_) {
             if (controller.loading.value == true) {
               return Text('data');
             } else {
-              return SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    // Text(controller.allData.toString()),
-
-                    Container(
-                      color: Colors.green.shade100,
-                      child: ListTile(
-                        title: Text('Your Highst Score'),
-                        subtitle: Text(controller.findTotal().toString()),
-                      ),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    color: Colors.green.shade100,
+                    child: ListTile(
+                      title: Text('Your Score'),
+                      subtitle: Text('${controller.total.value}'),
                     ),
-
-                    Container(
-                      color: Colors.green.shade100,
-                      child: ListTile(
-                        title: Text('Your Score'),
-                        subtitle: Text(controller.findTotal().toString()),
+                  ),
+                  Container(
+                    color: Colors.green.shade100,
+                    child: ListTile(
+                      title: Text(
+                        'Your Highst Score',
+                        textAlign: TextAlign.center,
                       ),
+                      subtitle: Obx(() {
+                        return Text(
+                          '${controller.heightScore.value}',
+                          style: TextStyle(fontSize: 50),
+                          textAlign: TextAlign.center,
+                        );
+                      }),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               );
             }
           },

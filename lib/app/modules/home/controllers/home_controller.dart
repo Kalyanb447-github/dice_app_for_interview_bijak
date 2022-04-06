@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   final RxInt maxChances = 10.obs;
   final RxInt currentChance = 0.obs;
   RxInt diceNumber = 1.obs;
-  RxList<dynamic> allData = List<dynamic>.filled(10, 0, growable: true).obs;
+  RxList<int> allData = List<int>.filled(10, 0, growable: true).obs;
   // change dice
   void changeDiceFace() {
     currentChance.value += 1;
@@ -26,7 +26,7 @@ class HomeController extends GetxController {
 
 // store value to the array
   addValue(int index, int value) {
-    allData[index] = value.toString();
+    allData[index] = value;
   }
 
 //clear all data
@@ -34,7 +34,7 @@ class HomeController extends GetxController {
     maxChances.value = 9;
     currentChance.value = 0;
     diceNumber = 1.obs;
-    allData = List<dynamic>.filled(10, 0, growable: true).obs;
+    allData = List<int>.filled(10, 0, growable: true).obs;
   }
 
   @override
