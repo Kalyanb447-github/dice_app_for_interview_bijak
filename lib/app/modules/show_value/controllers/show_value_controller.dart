@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 
 class ShowValueController extends GetxController {
   static ShowValueController get to => Get.find();
-  RxList<int> allData = List<int>.filled(10, 0, growable: true).obs;
+  RxList<int> allDiceValues = List<int>.filled(10, 0, growable: true).obs;
 
   RxInt total = 0.obs;
 
@@ -12,7 +12,7 @@ class ShowValueController extends GetxController {
 
   findTotal() {
     total.value = 0;
-    allData.forEach((element) {
+    allDiceValues.forEach((element) {
       total += element;
     });
   }
