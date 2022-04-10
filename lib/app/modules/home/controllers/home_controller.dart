@@ -56,7 +56,6 @@ class HomeController extends GetxController {
     ever(currentChance, (v) {
       if (v == maxChances.value) {
         ShowValueController.to.allDiceValues = allDiceValues;
-
         Get.toNamed(Routes.SHOW_VALUE);
       }
     });
