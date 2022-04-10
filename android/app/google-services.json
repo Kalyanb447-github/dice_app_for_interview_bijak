@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "339090082568",
+    "project_id": "kalyancv-bfab0",
+    "storage_bucket": "kalyancv-bfab0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339090082568:android:6fbbd995c617bbfbfebabd",
+        "android_client_info": {
+          "package_name": "com.dice.bijak.dice_app_for_interview_bijak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339090082568-p89eqvkahvks4atn7unr7k6sbv43k96b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dice.bijak.dice_app_for_interview_bijak",
+            "certificate_hash": "fb63cf90dab26971b16ded6edb0da0c793142237"
+          }
+        },
+        {
+          "client_id": "339090082568-57mik382ouodlokaudqrk5ivts41sk3r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB03JYfXJo5TlzMA3pNSPXozV6BFTZE8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339090082568-57mik382ouodlokaudqrk5ivts41sk3r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

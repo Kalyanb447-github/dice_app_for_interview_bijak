@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:dice_app_for_interview_bijak/app/routes/app_pages.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -71,5 +72,15 @@ class HomeController extends GetxController {
   saveDataToLocalForFutureUse() {
     // box.write('currentChance', currentChance.value);
     // box.write('allDiceValues', allDiceValues.value);
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  get user => _auth.currentUser;
+
+  //SIGN IN METHOD
+  Future signOut() async {
+    await _auth.signOut();
+
+    print('signout');
   }
 }
