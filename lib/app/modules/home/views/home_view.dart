@@ -1,3 +1,4 @@
+import 'package:dice_app_for_interview_bijak/app/modules/home/views/components/NavDrawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -17,9 +18,12 @@ class HomeView extends GetView<HomeController> {
       child: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
-          title: Text('Dicee'),
+          title: Obx(
+            () => Text('Hay, ${controller.displayName}'),
+          ),
           backgroundColor: Colors.red,
         ),
+        drawer: NavDrawer(),
         body: GetX<HomeController>(
           init: HomeController(),
           builder: (_) {

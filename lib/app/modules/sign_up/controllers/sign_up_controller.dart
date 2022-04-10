@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
+import 'package:get_storage/get_storage.dart';
+
+import '../../../constants.dart';
+
 class SignUpController extends GetxController {
   RxString email = ''.obs;
   RxString password = ''.obs;
@@ -29,10 +33,18 @@ class SignUpController extends GetxController {
   //SIGN IN METHOD
   Future signUp({required String email, required String password}) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
+  }
+
+  final box = GetStorage();
+  setDataForLocal() {
+    box.write(KuserLoggedIn, true);
   }
 }

@@ -108,19 +108,21 @@ class SignupForm extends GetView<SignUpController> {
             },
           ),
 
-          Row(
-            children: <Widget>[
-              Checkbox(
-                onChanged: (_) {
-                  controller.agree.value = !controller.agree.value;
-                },
-                value: controller.agree.value,
-              ),
-              Flexible(
-                child: Text(
-                    'By creating account, I agree to Terms & Conditions and Privacy Policy.'),
-              ),
-            ],
+          Obx(
+            () => Row(
+              children: <Widget>[
+                Checkbox(
+                  onChanged: (_) {
+                    controller.agree.value = !controller.agree.value;
+                  },
+                  value: controller.agree.value,
+                ),
+                Flexible(
+                  child: Text(
+                      'By creating account, I agree to Terms & Conditions and Privacy Policy.'),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             height: 10,
@@ -141,6 +143,7 @@ class SignupForm extends GetView<SignUpController> {
                           password: controller.password.value)
                       .then((result) {
                     if (result == null) {
+                      controller.setDataForLocal();
                       Get.toNamed(Routes.HOME);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

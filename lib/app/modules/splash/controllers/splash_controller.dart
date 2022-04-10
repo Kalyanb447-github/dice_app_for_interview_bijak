@@ -16,7 +16,7 @@ class SplashController extends GetxController {
 
     userLoggedIn = box.read(KuserLoggedIn) ?? false;
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(Duration(seconds: 2), () {
       if (userLoggedIn == true) {
         Get.toNamed(Routes.HOME);
       } else {

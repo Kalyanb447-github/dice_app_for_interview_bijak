@@ -32,26 +32,24 @@ class SignUpView extends GetView<SignUpController> {
             child: SignupForm(),
           ),
 
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text('Already here  ?',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20)),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(' Get Logged in Now!',
-                          style: TextStyle(fontSize: 20, color: Colors.blue)),
-                    )
-                  ],
-                )
-              ],
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text('Already here  ?',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(' Get Logged in Now!',
+                        style: TextStyle(fontSize: 20, color: Colors.blue)),
+                  )
+                ],
+              )
+            ],
           ),
         ],
       ),
