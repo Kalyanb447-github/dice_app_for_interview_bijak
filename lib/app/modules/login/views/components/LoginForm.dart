@@ -1,4 +1,3 @@
-import 'package:dice_app_for_interview_bijak/app/constants.dart';
 import 'package:dice_app_for_interview_bijak/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 

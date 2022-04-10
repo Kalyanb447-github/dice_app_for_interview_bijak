@@ -24,6 +24,9 @@ class HomeController extends GetxController {
 
     if (currentChance.value <= maxChances.value) {
       addValue(currentChance.value - 1, diceNumber.value);
+      saveDataToLocalForFutureUse(
+          allDiceValues: allDiceValues.value,
+          currentChance: currentChance.value);
     } else {
       Get.snackbar('Sorry!', "sorry your chances is over");
     }
@@ -46,6 +49,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     getcurrentUserUserData();
+    setDataToLocalForFutureUse();
     // currentChance.value = box.read('currentChance') ?? 0;
     // List<int> temp =
     //     box.read('allDiceValues') ?? List<int>.filled(10, 0, growable: true);
@@ -56,6 +60,10 @@ class HomeController extends GetxController {
     ever(currentChance, (v) {
       if (v == maxChances.value) {
         ShowValueController.to.allDiceValues = allDiceValues;
+
+        saveDataToLocalForFutureUse(
+            allDiceValues: List<int>.filled(10, 0, growable: true),
+            currentChance: 0);
         Get.toNamed(Routes.SHOW_VALUE);
       }
     });
@@ -69,9 +77,20 @@ class HomeController extends GetxController {
   @override
   void onClose() {}
 
-  saveDataToLocalForFutureUse() {
-    // box.write('currentChance', currentChance.value);
-    // box.write('allDiceValues', allDiceValues.value);
+  setDataToLocalForFutureUse() {
+    var tempCurrentChance = box.read(KcurrentChance);
+    var tempallDiceValues = box.read(KallDiceValues);
+    currentChance.value = tempCurrentChance;
+    allDiceValues.value = tempallDiceValues.cast<int>();
+
+    print(tempCurrentChance);
+    print(tempallDiceValues);
+  }
+
+  saveDataToLocalForFutureUse(
+      {required currentChance, required allDiceValues}) {
+    box.write(KcurrentChance, currentChance);
+    box.write(KallDiceValues, allDiceValues);
   }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;

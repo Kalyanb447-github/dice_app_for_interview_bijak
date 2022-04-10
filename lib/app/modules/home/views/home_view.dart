@@ -9,7 +9,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Future<bool> onWillPop() {
-      controller.saveDataToLocalForFutureUse();
+      // controller.saveDataToLocalForFutureUse();
       return Future.value(true);
     }
 
@@ -36,13 +36,8 @@ class HomeView extends GetView<HomeController> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: TextButton(
-                          onPressed: () {
-                            controller.changeDiceFace();
-                          },
-                          child: Image.asset(
-                              'images/dice${controller.diceNumber}.png'),
-                        ),
+                        child: Image.asset(
+                            'images/dice${controller.diceNumber}.png'),
                       ),
                     ],
                   ),
@@ -51,6 +46,11 @@ class HomeView extends GetView<HomeController> {
             );
           },
         ),
+        floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              controller.changeDiceFace();
+            },
+            label: Text('Role The Dice')),
       ),
     );
   }

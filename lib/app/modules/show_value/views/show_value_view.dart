@@ -7,8 +7,9 @@ import '../controllers/show_value_controller.dart';
 
 class ShowValueView extends GetView<ShowValueController> {
   Future<bool> onWillPop() {
+    Get.back();
     HomeController.to.clearAllData();
-    return Future.value(true);
+    return Future.value(false);
   }
 
   @override
