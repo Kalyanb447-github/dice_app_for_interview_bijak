@@ -11,13 +11,16 @@ import '../../show_value/controllers/show_value_controller.dart';
 class HomeController extends GetxController {
   static HomeController get to => Get.find();
   final box = GetStorage();
-
+  // max chances length of the dice
   final RxInt maxChances = 10.obs;
+  // which chances roling the dice
   final RxInt currentChance = 0.obs;
+  //dice genegated random number
   RxInt diceNumber = 1.obs;
+  // all dice data has been stored in the list
   RxList<int> allDiceValues = List<int>.filled(10, 0, growable: true).obs;
 
-  // change dice
+  //function for dice genegated random number
   void changeDiceFace() {
     currentChance.value += 1;
     diceNumber.value = Random().nextInt(6) + 1;
@@ -37,26 +40,19 @@ class HomeController extends GetxController {
     allDiceValues[index] = value;
   }
 
-//clear all data
-  clearAllData() {
-    maxChances.value = 9;
-    currentChance.value = 0;
-    diceNumber = 1.obs;
-    allDiceValues = List<int>.filled(10, 0, growable: true).obs;
-  }
-
   @override
   void onInit() {
     super.onInit();
+    // get current user data from firebase
     getcurrentUserUserData();
+    // set data from the local database
     setDataToLocalForFutureUse();
-    // currentChance.value = box.read('currentChance') ?? 0;
-    // List<int> temp =
-    //     box.read('allDiceValues') ?? List<int>.filled(10, 0, growable: true);
-    // allDiceValues.value = temp;
+    //listten for the chance
+    listenForTheChance();
+  }
 
-    // if cuccent value is equal to max chances
-    //move to another page
+  //listten for the chance if user has execeded the 10 chances
+  listenForTheChance() {
     ever(currentChance, (v) {
       if (v == maxChances.value) {
         ShowValueController.to.allDiceValues = allDiceValues;
@@ -69,24 +65,15 @@ class HomeController extends GetxController {
     });
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-
+  // get data rom local database to local variable
   setDataToLocalForFutureUse() {
     var tempCurrentChance = box.read(KcurrentChance);
     var tempallDiceValues = box.read(KallDiceValues);
     currentChance.value = tempCurrentChance;
     allDiceValues.value = tempallDiceValues.cast<int>();
-
-    print(tempCurrentChance);
-    print(tempallDiceValues);
   }
 
+  // save Data To Local For Future Use
   saveDataToLocalForFutureUse(
       {required currentChance, required allDiceValues}) {
     box.write(KcurrentChance, currentChance);
@@ -112,5 +99,13 @@ class HomeController extends GetxController {
       displayName.value = user.email?.replaceAll('@gmail.com', '') ?? '';
       // signed in
     } else {}
+  }
+
+  //clear all data
+  clearAllData() {
+    maxChances.value = 9;
+    currentChance.value = 0;
+    diceNumber = 1.obs;
+    allDiceValues = List<int>.filled(10, 0, growable: true).obs;
   }
 }
