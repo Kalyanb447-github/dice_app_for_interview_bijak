@@ -11,8 +11,11 @@ user can login
 
 ## About the Game
 User has 10 chance to role the dice 
+
 Geme count the the dices
+
 If user got heghest dices 
+
 it will show a dialog
 
 
