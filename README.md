@@ -24,6 +24,8 @@ it will store the session
 
 I have implemented flavor for dev and production
 
+I have user GetX archetecture for the business logic
+
 
 
 <p float="left">

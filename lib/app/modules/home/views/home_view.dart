@@ -1,10 +1,10 @@
 import 'package:dice_app_for_interview_bijak/app/modules/home/views/components/NavDrawer.dart';
-import 'package:dice_app_for_interview_bijak/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 
 import 'package:get/get.dart';
 
+import '../../../constants.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
