@@ -2,6 +2,7 @@ import 'package:dice_app_for_interview_bijak/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../widgets/progress.dart';
 import '../../controllers/sign_up_controller.dart';
 
 class SignupForm extends GetView<SignUpController> {
@@ -136,6 +137,7 @@ class SignupForm extends GetView<SignUpController> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
+                  ProgressBar().start();
 
                   controller
                       .signUp(
@@ -143,9 +145,13 @@ class SignupForm extends GetView<SignUpController> {
                           password: controller.password.value)
                       .then((result) {
                     if (result == null) {
+                      ProgressBar().stop();
+
                       controller.setDataForLocal();
                       Get.toNamed(Routes.HOME);
                     } else {
+                      ProgressBar().stop();
+
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(
                           result,

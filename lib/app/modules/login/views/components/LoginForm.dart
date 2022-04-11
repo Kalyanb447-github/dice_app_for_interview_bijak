@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../widgets/progress.dart';
 import '../../controllers/login_controller.dart';
 
 class LoginForm extends GetView<LoginController> {
@@ -87,6 +88,7 @@ class LoginForm extends GetView<LoginController> {
 
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
+                  ProgressBar().start();
 
                   controller
                       .signIn(
@@ -94,9 +96,13 @@ class LoginForm extends GetView<LoginController> {
                           password: controller.password.value)
                       .then((result) {
                     if (result == null) {
+                      ProgressBar().stop();
+
                       controller.setDataForLocal();
                       Get.toNamed(Routes.HOME);
                     } else {
+                      ProgressBar().stop();
+
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(
                           result,
