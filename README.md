@@ -1,19 +1,20 @@
 # dice_app_for_interview_bijak
 
-A new Flutter project.
+This is flutter Game
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is a Simple Dice game 
 
-A few resources to get you started if this is your first Flutter project:
+user can login 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## About the Game
+User has 10 chance to role the dice 
+Geme count the the dices
+If user got heghest dices 
+it will show a dialog
+
 
 
 <p float="left">
