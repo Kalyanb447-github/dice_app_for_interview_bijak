@@ -69,8 +69,11 @@ class HomeController extends GetxController {
   setDataToLocalForFutureUse() {
     var tempCurrentChance = box.read(KcurrentChance);
     var tempallDiceValues = box.read(KallDiceValues);
-    currentChance.value = tempCurrentChance;
-    allDiceValues.value = tempallDiceValues.cast<int>();
+
+    currentChance.value = tempCurrentChance ?? 0;
+    if (tempallDiceValues != null) {
+      allDiceValues.value = tempallDiceValues.cast<int>();
+    }
   }
 
   // save Data To Local For Future Use
