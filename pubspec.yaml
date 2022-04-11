@@ -12,6 +12,7 @@ dependencies:
   # shared_preferences: any
   firebase_core: any
   firebase_auth: any
+  flutter_flavor: any
   flutter:
     sdk: flutter
 

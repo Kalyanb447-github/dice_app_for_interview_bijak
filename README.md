@@ -18,6 +18,12 @@ If user got heghest dices
 
 it will show a dialog
 
+Game can play ofline 
+
+it will store the session 
+
+I have implemented flavor for dev and production
+
 
 
 <p float="left">

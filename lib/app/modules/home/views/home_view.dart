@@ -1,5 +1,7 @@
 import 'package:dice_app_for_interview_bijak/app/modules/home/views/components/NavDrawer.dart';
+import 'package:dice_app_for_interview_bijak/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_flavor/flutter_flavor.dart';
 
 import 'package:get/get.dart';
 
@@ -8,6 +10,7 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
+    bool devMode = FlavorConfig.instance.variables[kDevMode] ?? false;
     Future<bool> onWillPop() {
       // controller.saveDataToLocalForFutureUse();
       return Future.value(true);
@@ -21,7 +24,7 @@ class HomeView extends GetView<HomeController> {
           title: Obx(
             () => Text('Hay, ${controller.displayName}'),
           ),
-          backgroundColor: Colors.red,
+          backgroundColor: devMode ? Colors.orange : Colors.red,
         ),
         drawer: NavDrawer(),
         body: GetX<HomeController>(
@@ -31,7 +34,11 @@ class HomeView extends GetView<HomeController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // Text(controller.allData.toString()),
+                  Text(
+                      devMode
+                          ? "App running in the dev Mode"
+                          : "App running in the Production mode",
+                      style: TextStyle(color: Colors.white)),
                   Text('Chance ${controller.currentChance.value + 1}'),
                   Row(
                     children: <Widget>[
